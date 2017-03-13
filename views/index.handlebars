@@ -1,0 +1,81 @@
+
+
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>Burger MVC</h1>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  
+
+
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+<h2>Undevoured  Burger</h2>
+<div class="well">
+<ul>
+  {{#each burgers }}
+    {{#unless this.devoured}}
+      <li>
+        {{this.burger_name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit">Eat it</button>
+        </form>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+</div>
+</div>
+
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+<h2>Devoured Burgers</h2>
+<div class="well">
+<ul>
+  {{#each burgers}}
+    {{#if this.devoured}}
+      <li>
+        {{this.burger_name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="false">
+          <button type="submit">Make some more</button>
+        </form>
+
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+  
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    
+  
+  
+<h2>Add a Burger</h2>
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="slee">Devoured?</label><br>
+    <input type="radio" name="devoured" value="1" checked> Yes!<br>
+    <input type="radio" name="devoured" value="0"> No
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
+</div>
+</div>
